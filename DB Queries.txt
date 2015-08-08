@@ -1,0 +1,48 @@
+Creating Tables in DB
+=====================
+
+CREATE TABLE comments (
+  commentID int(11) AUTO_INCREMENT,
+  comment text,
+  commenterID int(11),
+  commentDate datetime,
+  commentVote int(11),
+  PRIMARY KEY (commentID),
+);
+
+CREATE TABLE postdetails (
+  PostDetailID int(11) AUTO_INCREMENT,
+  PostID int(11),
+  PostText text,
+  PRIMARY KEY (PostDetailID),
+);
+
+CREATE TABLE posts (
+  PostID int(11) AUTO_INCREMENT,
+  PostTitle varchar(250),
+  PostDate datetime,
+  OwnerID int(11),
+  PostVote int(11),
+  PRIMARY KEY (PostID),
+); 
+
+
+CREATE TABLE users(
+    id INT AUTO_INCREMENT,
+    fullname VARCHAR (50),
+    email VARCHAR (50),
+    password VARCHAR (50),
+    gender VARCHAR (50),
+    birthdate VARCHAR (50),
+    PRIMARY KEY ( id )
+    );
+
+
+Adding Foreign Key
+==================
+
+ALTER TABLE posts ADD FOREIGN KEY (OwnerID) REFERENCES users(id);
+ALTER TABLE postdetails ADD FOREIGN KEY (PostID) REFERENCES posts(PostID);
+ALTER TABLE comments ADD FOREIGN KEY (commenterID) REFERENCES users(id);
+
+
